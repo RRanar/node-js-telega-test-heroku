@@ -11,7 +11,3 @@ bot.command('start', (ctx) => {
 bot.on('text', (ctx) => {
     ctx.telegram.sendMessage(process.env.SUPPORT_CHAT_ID, ctx.message);
 });
-
-bot.command('age', (ctx) => {
-
-});
