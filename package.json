@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "BOT_TOKEN=\"1255632261:AAHs1uVZ1X8QJULktFjU2YSCUOJBgHd0gFY\" SUPPORT_CHAT_ID=\"-561962837\" node app.js"
   },
   "author": "",
   "license": "ISC",
