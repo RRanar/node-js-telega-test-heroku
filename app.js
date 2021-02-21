@@ -1,7 +1,19 @@
-const { Telegraf } = require('telegraf');
+const {Telegraf, session} = require('telegraf');
+const Stage = require('telegraf').Scenes.Stage;
+const {enter, leave} = require('telegraf').Scenes.Stage;
+const remindScene = require('./scenes');
 const dateDiff = require('./helpers');
+const {remindSchema, mongoose} =  require("./models");
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
+bot.use(session({
+    property:"chatSession",
+    getSessionKey: (ctx) => ctx.chat && ctx.chat.id,
+}));
+const stage = new Stage([remindScene], {sessionName:'chatSession'});
+bot.use(stage.middleware());
+
+bot.command('rmnd',ctx => ctx.scene.enter('REMIND_SCENE_ID', ctx.scene.state));
 
 bot.command('start', (ctx) => {
     ctx.reply(`Hello, ${ctx.message.from.username}`);
